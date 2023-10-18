@@ -9,21 +9,24 @@ function Formulario({ onTarefaSalva }) {
     const descricao = e.currentTarget.descricao.value;
     const data = e.currentTarget.data.value;
     onTarefaSalva(descricao, data);
+
+    exibirSweetAlert();
+    
     e.currentTarget.reset();
   };
 
   const exibirSweetAlert = () => {
     Swal.fire({
-      title: "Do you want to save the changes?",
+      title: "Deseja salvar a tarefa?",
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: "Save",
       denyButtonText: "Don't save",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Saved!", "", "success");
+        Swal.fire("Salvo!", "", "success");
       } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
+        Swal.fire("Tarefa não salva", "", "info");
       }
     });
   };
